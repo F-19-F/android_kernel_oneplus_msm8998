@@ -5,7 +5,8 @@
 export clangpath=${HOME}/clang_14_0_6/bin
 # git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9 -b android-10.0.0_r32 ~/arm-linux-androideabi-4.9 --depth 1
 export gccpath=${HOME}/arm-linux-androideabi-4.9/bin
-PATH=${clangpath}:$PATH
+export gcc64path=${HOME}/aarch64-linux-android-4.9/bin
+PATH=${clangpath}:${gcc64path}:$PATH
 args="-j$(nproc --all) \
 O=out \
 ARCH=arm64 \
