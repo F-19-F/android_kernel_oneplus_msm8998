@@ -1,0 +1,4 @@
+[submodule "KernelSU"]
+	path = KernelSU
+	url = https://github.com/F-19-F/KernelSU
+	branch = kernel4.4
