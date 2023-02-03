@@ -95,6 +95,7 @@ EXPORT_SYMBOL(fscrypt_release_ctx);
  * Return: An allocated and initialized encryption context on success; error
  * value or NULL otherwise.
  */
+// 可疑
 struct fscrypt_ctx *fscrypt_get_ctx(const struct inode *inode, gfp_t gfp_flags)
 {
 	struct fscrypt_ctx *ctx = NULL;

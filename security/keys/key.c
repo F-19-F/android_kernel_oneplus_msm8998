@@ -622,6 +622,7 @@ EXPORT_SYMBOL(key_put);
 /*
  * Find a key by its serial number.
  */
+// OK
 struct key *key_lookup(key_serial_t id)
 {
 	struct rb_node *n;
@@ -667,6 +668,7 @@ error:
  * We return with the sem read-locked if successful.  If the type wasn't
  * available -ENOKEY is returned instead.
  */
+// OK
 struct key_type *key_type_lookup(const char *type)
 {
 	struct key_type *ktype;

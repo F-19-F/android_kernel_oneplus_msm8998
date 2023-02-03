@@ -23,6 +23,7 @@
 /*
  * Request an asymmetric key.
  */
+// unhook
 static struct key *request_asymmetric_key(struct key *keyring, uint32_t keyid)
 {
 	struct key *key;

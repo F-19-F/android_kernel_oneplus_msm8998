@@ -566,7 +566,7 @@ static int verity_mode(void)
 
 	return DM_VERITY_MODE_EIO;
 }
-
+// unhook
 static int verify_verity_signature(char *key_id,
 		struct android_metadata *metadata)
 {

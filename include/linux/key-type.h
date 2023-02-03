@@ -170,7 +170,7 @@ extern int key_reject_and_link(struct key *key,
 			       struct key *keyring,
 			       struct key *instkey);
 extern void complete_request_key(struct key_construction *cons, int error);
-
+// OK
 static inline int key_negate_and_link(struct key *key,
 				      unsigned timeout,
 				      struct key *keyring,

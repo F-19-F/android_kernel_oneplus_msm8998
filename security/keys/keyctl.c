@@ -629,6 +629,7 @@ error:
  * supplied and the key has Link permission, and the found key ID will be
  * returned.
  */
+// OK
 long keyctl_keyring_search(key_serial_t ringid,
 			   const char __user *_type,
 			   const char __user *_description,
@@ -723,6 +724,7 @@ error:
  * is provided, and return the amount of data that is available in the key,
  * irrespective of how much we copied into the buffer.
  */
+// OK
 long keyctl_read_key(key_serial_t keyid, char __user *buffer, size_t buflen)
 {
 	struct key *key;
@@ -949,6 +951,7 @@ error:
  * Get the destination keyring for instantiation and check that the caller has
  * Write permission on it.
  */
+// unhook
 static long get_instantiation_keyring(key_serial_t ringid,
 				      struct request_key_auth *rka,
 				      struct key **_dest_keyring)
@@ -1157,6 +1160,7 @@ long keyctl_instantiate_key_iov(key_serial_t id,
  *
  * If successful, 0 will be returned.
  */
+// OK
 long keyctl_negate_key(key_serial_t id, unsigned timeout, key_serial_t ringid)
 {
 	return keyctl_reject_key(id, timeout, ENOKEY, ringid);

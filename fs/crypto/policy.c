@@ -233,6 +233,7 @@ EXPORT_SYMBOL(fscrypt_has_permitted_context);
  *
  * Return: 0 on success, -errno on failure
  */
+// no hook
 int fscrypt_inherit_context(struct inode *parent, struct inode *child,
 						void *fs_data, bool preload)
 {

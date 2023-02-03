@@ -4565,10 +4565,10 @@ static int tracing_set_tracer(struct trace_array *tr, const char *buf)
 	}
 
 	/* If trace pipe files are being read, we can't change the tracer */
-	if (tr->current_trace->ref) {
-		ret = -EBUSY;
-		goto out;
-	}
+	// if (tr->current_trace->ref) {
+	// 	ret = -EBUSY;
+	// 	goto out;
+	// }
 
 	trace_branch_disable();
 

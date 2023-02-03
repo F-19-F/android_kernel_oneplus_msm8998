@@ -315,6 +315,7 @@ EXPORT_SYMBOL(fscrypt_fname_disk_to_usr);
  *
  * Return: 0 on success, -errno on failure
  */
+// unhook 可疑
 int fscrypt_setup_filename(struct inode *dir, const struct qstr *iname,
 			      int lookup, struct fscrypt_name *fname)
 {

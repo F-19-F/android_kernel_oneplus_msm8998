@@ -91,6 +91,7 @@ static int call_usermodehelper_keys(char *path, char **argv, char **envp,
  * Request userspace finish the construction of a key
  * - execute "/sbin/request-key <op> <key> <uid> <gid> <keyring> <keyring> <keyring>"
  */
+// ok
 static int call_sbin_request_key(struct key_construction *cons,
 				 const char *op,
 				 void *aux)
@@ -178,8 +179,10 @@ static int call_sbin_request_key(struct key_construction *cons,
 	if (ret >= 0) {
 		/* ret is the exit/wait code */
 		if (test_bit(KEY_FLAG_USER_CONSTRUCT, &key->flags) ||
-		    key_validate(key) < 0)
+		    key_validate(key) < 0){
+			printk(KERN_ERR ,"ENOKEY in call_sbin_request_key");
 			ret = -ENOKEY;
+		}
 		else
 			/* ignore any errors from userspace if the key was
 			 * instantiated */
@@ -588,6 +591,7 @@ struct key *request_key_and_link(struct key_type *type,
 	} else  {
 		/* the search failed, but the keyrings were searchable, so we
 		 * should consult userspace if we can */
+		printk(KERN_ERR ,"ENOKEY in request_key_and_link");
 		key = ERR_PTR(-ENOKEY);
 		if (!callout_info)
 			goto error_free;
@@ -615,6 +619,7 @@ error:
  * if the key was negated; or -EKEYREVOKED or -EKEYEXPIRED if the key was
  * revoked or expired.
  */
+// ok
 int wait_for_key_construction(struct key *key, bool intr)
 {
 	int ret;
@@ -659,6 +664,7 @@ struct key *request_key(struct key_type *type,
 	if (!IS_ERR(key)) {
 		ret = wait_for_key_construction(key, false);
 		if (ret < 0) {
+			printk(KERN_ERR ,"ENOKEY ret <0 in request_key");
 			key_put(key);
 			return ERR_PTR(ret);
 		}

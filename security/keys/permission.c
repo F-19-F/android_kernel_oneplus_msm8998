@@ -86,6 +86,7 @@ EXPORT_SYMBOL(key_task_permission);
  * key is invalidated, -EKEYREVOKED if the key's type has been removed or if
  * the key has been revoked or -EKEYEXPIRED if the key has expired.
  */
+// OK
 int key_validate(const struct key *key)
 {
 	unsigned long flags = key->flags;

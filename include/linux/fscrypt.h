@@ -206,6 +206,7 @@ static inline int fscrypt_prepare_setattr(struct dentry *dentry,
  * -ENOKEY if the encryption key is missing, or another -errno code if a problem
  * occurred while setting up the encryption key.
  */
+// unhook
 static inline int fscrypt_prepare_symlink(struct inode *dir,
 					  const char *target,
 					  unsigned int len,

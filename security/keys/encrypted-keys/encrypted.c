@@ -841,6 +841,7 @@ static void encrypted_rcu_free(struct rcu_head *rcu)
  *
  * On success, return 0. Otherwise return errno.
  */
+// ok
 static int encrypted_update(struct key *key, struct key_preparsed_payload *prep)
 {
 	struct encrypted_key_payload *epayload = key->payload.data[0];

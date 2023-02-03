@@ -69,6 +69,7 @@ out:
  * description prefix:descriptor, and if found acquire a read lock on it and
  * return a pointer to its validated payload in *payload_ret.
  */
+// unhook
 static struct key *
 find_and_lock_process_key(const char *prefix,
 			  const u8 descriptor[FS_KEY_DESCRIPTOR_SIZE],

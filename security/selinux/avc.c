@@ -972,6 +972,7 @@ static noinline struct avc_node *avc_compute_av(u32 ssid, u32 tsid,
 {
 	rcu_read_unlock();
 	INIT_LIST_HEAD(&xp_node->xpd_head);
+	// 这里
 	security_compute_av(ssid, tsid, tclass, avd, &xp_node->xp);
 	rcu_read_lock();
 	return avc_insert(ssid, tsid, tclass, avd, xp_node);

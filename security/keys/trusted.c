@@ -1004,6 +1004,7 @@ static void trusted_rcu_free(struct rcu_head *rcu)
 /*
  * trusted_update - reseal an existing key with new PCR values
  */
+// non hook
 static int trusted_update(struct key *key, struct key_preparsed_payload *prep)
 {
 	struct trusted_key_payload *p;

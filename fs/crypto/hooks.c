@@ -111,7 +111,7 @@ int __fscrypt_prepare_lookup(struct inode *dir, struct dentry *dentry)
 	return 0;
 }
 EXPORT_SYMBOL_GPL(__fscrypt_prepare_lookup);
-
+// 可疑
 int __fscrypt_prepare_symlink(struct inode *dir, unsigned int len,
 			      unsigned int max_len,
 			      struct fscrypt_str *disk_link)

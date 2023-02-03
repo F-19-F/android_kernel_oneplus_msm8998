@@ -1021,6 +1021,7 @@ struct file *filp_open(const char *filename, int flags, umode_t mode)
 	struct file *file = ERR_CAST(name);
 	
 	if (!IS_ERR(name)) {
+		// 进入这里了
 		file = file_open_name(name, flags, mode);
 		putname(name);
 	}

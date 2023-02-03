@@ -406,6 +406,7 @@ static inline int do_inode_permission(struct vfsmount *mnt, struct inode *inode,
  * This does not check for a read-only file system.  You probably want
  * inode_permission().
  */
+// 这里出错了
 int __inode_permission2(struct vfsmount *mnt, struct inode *inode, int mask)
 {
 	int retval;
@@ -425,7 +426,7 @@ int __inode_permission2(struct vfsmount *mnt, struct inode *inode, int mask)
 	retval = devcgroup_inode_permission(inode, mask);
 	if (retval)
 		return retval;
-
+// 这里出问题了
 	retval = security_inode_permission(inode, mask);
 	return retval;
 }
@@ -2837,7 +2838,7 @@ int vfs_create(struct inode *dir, struct dentry *dentry, umode_t mode,
 	return vfs_create2(NULL, dir, dentry, mode, want_excl);
 }
 EXPORT_SYMBOL(vfs_create);
-
+// 这里进入may_open
 static int may_open(struct path *path, int acc_mode, int flag)
 {
 	struct dentry *dentry = path->dentry;
@@ -3355,6 +3356,7 @@ finish_open:
 		got_write = true;
 	}
 finish_open_created:
+// 进入这里
 	error = may_open(&nd->path, acc_mode, open_flag);
 	if (error)
 		goto out;
@@ -3479,7 +3481,7 @@ static struct file *path_openat(struct nameidata *nd,
 	struct file *file;
 	int opened = 0;
 	int error;
-
+// OK
 	file = get_empty_filp();
 	if (IS_ERR(file))
 		return file;
@@ -3490,17 +3492,19 @@ static struct file *path_openat(struct nameidata *nd,
 		error = do_tmpfile(nd, flags, op, file, &opened);
 		goto out2;
 	}
-
+// ->
 	s = path_init(nd, flags);
 	if (IS_ERR(s)) {
 		put_filp(file);
 		return ERR_CAST(s);
 	}
 	while (!(error = link_path_walk(s, nd)) &&
+	// <0
 		(error = do_last(nd, file, op, &opened)) > 0) {
 		nd->flags &= ~(LOOKUP_OPEN|LOOKUP_CREATE|LOOKUP_EXCL);
 		s = trailing_symlink(nd);
 		if (IS_ERR(s)) {
+			// breaked
 			error = PTR_ERR(s);
 			break;
 		}

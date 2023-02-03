@@ -245,6 +245,7 @@ error_alloc:
  * Search the current process's keyrings for the authorisation key for
  * instantiation of a key.
  */
+// non
 struct key *key_get_instantiation_authkey(key_serial_t target_id)
 {
 	char description[16];
@@ -266,8 +267,11 @@ struct key *key_get_instantiation_authkey(key_serial_t target_id)
 
 	if (IS_ERR(authkey_ref)) {
 		authkey = ERR_CAST(authkey_ref);
-		if (authkey == ERR_PTR(-EAGAIN))
+		if (authkey == ERR_PTR(-EAGAIN)){
+			printk(KERN_ERR ,"ENOKEY in key_get_instantiation_authkey");
 			authkey = ERR_PTR(-ENOKEY);
+		}
+			
 		goto error;
 	}
 

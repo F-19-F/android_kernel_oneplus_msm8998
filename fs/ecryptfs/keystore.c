@@ -39,6 +39,7 @@
  * determine the type of error, make appropriate log entries, and
  * return an error code.
  */
+// unhook
 static int process_request_key_err(long err_code)
 {
 	int rc = 0;

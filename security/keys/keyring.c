@@ -966,6 +966,7 @@ found:
  * Returns a pointer to the keyring with the keyring's refcount having being
  * incremented on success.  -ENOKEY is returned if a key could not be found.
  */
+// OK
 struct key *find_keyring_by_name(const char *name, bool uid_keyring)
 {
 	struct key *keyring;

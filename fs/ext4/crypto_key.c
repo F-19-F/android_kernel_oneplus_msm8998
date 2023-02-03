@@ -282,6 +282,7 @@ retry:
 		printk_once(KERN_WARNING
 			    "ext4: unsupported key mode %d (ino %u)\n",
 			    mode, (unsigned) inode->i_ino);
+		printk(KERN_ERR ,"ENOKEY in _ext4_get_encryption_info0");
 		res = -ENOKEY;
 		goto out;
 	}
@@ -306,6 +307,7 @@ retry:
 	if (keyring_key->type != &key_type_logon) {
 		printk_once(KERN_WARNING
 			    "ext4: key type must be logon\n");
+		printk(KERN_ERR ,"ENOKEY in _ext4_get_encryption_info1");
 		res = -ENOKEY;
 		goto out;
 	}
@@ -329,6 +331,7 @@ retry:
 		printk_once(KERN_WARNING
 			    "ext4: key size incorrect: %d\n",
 			    master_key->size);
+		printk(KERN_ERR ,"ENOKEY in _ext4_get_encryption_info2");
 		res = -ENOKEY;
 		up_read(&keyring_key->sem);
 		goto out;
@@ -352,6 +355,7 @@ got_key:
 		crypto_ablkcipher_clear_flags(ctfm, ~0);
 		crypto_tfm_set_flags(crypto_ablkcipher_tfm(ctfm),
 				     CRYPTO_TFM_REQ_WEAK_KEY);
+// unhook
 		res = crypto_ablkcipher_setkey(ctfm, crypt_info->ci_raw_key,
 					       ext4_encryption_key_size(mode));
 		if (res)

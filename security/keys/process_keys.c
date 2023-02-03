@@ -333,6 +333,7 @@ void key_fsgid_changed(struct task_struct *tsk)
  * In the case of a successful return, the possession attribute is set on the
  * returned key reference.
  */
+// OK
 key_ref_t search_my_process_keyrings(struct keyring_search_context *ctx)
 {
 	key_ref_t key_ref, ret, err;
@@ -445,6 +446,7 @@ found:
  *
  * Return same as search_my_process_keyrings().
  */
+// ok
 key_ref_t search_process_keyrings(struct keyring_search_context *ctx)
 {
 	struct request_key_auth *rka;
@@ -764,6 +766,7 @@ reget_creds:
  * keyrings from going away whilst the attempt is made to going them and also
  * to prevent a race in creating compatible session keyrings.
  */
+// ok
 long join_session_keyring(const char *name)
 {
 	const struct cred *old;

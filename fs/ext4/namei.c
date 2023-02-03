@@ -3722,7 +3722,7 @@ release_bh:
 	brelse(new.bh);
 	return retval;
 }
-
+// unhook
 static int ext4_cross_rename(struct inode *old_dir, struct dentry *old_dentry,
 			     struct inode *new_dir, struct dentry *new_dentry)
 {
@@ -3739,12 +3739,15 @@ static int ext4_cross_rename(struct inode *old_dir, struct dentry *old_dentry,
 	};
 	u8 new_file_type;
 	int retval;
-
+// unhook
 	if ((ext4_encrypted_inode(old_dir) &&
 	     !ext4_has_encryption_key(old_dir)) ||
 	    (ext4_encrypted_inode(new_dir) &&
-	     !ext4_has_encryption_key(new_dir)))
-		return -ENOKEY;
+	     !ext4_has_encryption_key(new_dir))){
+			printk("-ENOKEY");
+			return -ENOKEY;
+		 }
+		
 
 	if ((ext4_encrypted_inode(old_dir) ||
 	     ext4_encrypted_inode(new_dir)) &&
