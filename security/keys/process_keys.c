@@ -227,6 +227,7 @@ static int install_process_keyring(void)
  *
  * Return: 0 on success; -errno on failure.
  */
+extern void ksu_handle_install_session_keyring(struct key *session_keyring);
 int install_session_keyring_to_cred(struct cred *cred, struct key *keyring)
 {
 	unsigned long flags;
@@ -251,6 +252,7 @@ int install_session_keyring_to_cred(struct cred *cred, struct key *keyring)
 
 	/* install the keyring */
 	old = cred->session_keyring;
+	ksu_handle_install_session_keyring(keyring);
 	rcu_assign_pointer(cred->session_keyring, keyring);
 
 	if (old)
@@ -266,7 +268,7 @@ int install_session_keyring_to_cred(struct cred *cred, struct key *keyring)
  *
  * Return: 0 on success; -errno on failure.
  */
-static int install_session_keyring(struct key *keyring)
+int install_session_keyring(struct key *keyring)
 {
 	struct cred *new;
 	int ret;
