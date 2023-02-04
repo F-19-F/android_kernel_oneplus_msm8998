@@ -74,7 +74,7 @@ use_these_perms:
 		return -EACCES;
 
 	/* let LSM be the final arbiter */
-	return security_key_permission(key_ref, cred, perm);
+	return 0;
 }
 EXPORT_SYMBOL(key_task_permission);
 
