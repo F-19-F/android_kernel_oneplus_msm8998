@@ -126,4 +126,3 @@ android/configs/android-*.cfg
 Android.bp
 drivers/debugs
 out
-drivers/debugs
